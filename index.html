@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal Flowers — Премиальная флористика</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0f0f0f;
+            --bg-card: #161616;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text: #e0e0e0;
+            --text-muted: #999999;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: var(--bg-dark);
+            line-height: 1.7;
+            font-weight: 300;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        header {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.85)), url('images/BG.jpg') center/cover no-repeat;
+            color: var(--text);
+            padding: 160px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .hero-content {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 25px;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: var(--text-muted);
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--gold);
+            padding: 14px 36px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            border: 1px solid var(--gold);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 60px;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: var(--transition);
+        }
+
+        .card:hover img {
+            filter: brightness(1);
+        }
+
+        .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .card-price {
+            color: var(--gold);
+            font-weight: 500;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .features {
+            background: #121212;
+            padding: 80px 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature-item i {
+            font-size: 36px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer {
+            background: #0a0a0a;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 14px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 20px;
+            }
+            .logo {
+                font-size: 20px;
+            }
+            .logo i {
+                font-size: 18px;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 78px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 78px);
+                background: rgba(15, 15, 15, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: var(--transition);
+                border-top: 1px solid rgba(212, 175, 55, 0.2);
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });"><i class="fas fa-gem"></i> Crystal Flowers</a>
+            <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links">
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#features">Преимущества</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#telegram-section">Telegram-бот</a></li>
+                <li><a href="#manager-section">Менеджер</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Искусство премиальной флористики</h1>
+            <p>Эксклюзивные композиции из отборных цветов с доставкой абсолютной точности.</p>
+            <p style="color: var(--gold-light); font-size: 13px; margin-bottom: 25px; letter-spacing: 0.3px; line-height: 1.6;"><i class="fas fa-map-marker-alt" style="margin-right: 4px;"> Доставка по РФ</i> &bull; <i class="fas fa-clock" style="margin-left: 6px; margin-right: 4px;"> 24/7</i> &bull; <i class="fas fa-shipping-fast" style="margin-left: 6px; margin-right: 4px;"> За 60-90 мин</i></p>
+            <a href="#catalog" class="btn" onclick="event.preventDefault(); const target = document.getElementById('catalog'); const targetPosition = target.getBoundingClientRect().top + window.pageYOffset; const offset = (window.innerHeight - target.offsetHeight) / 2; window.scrollTo({ top: targetPosition - (offset > 0 ? offset : 50), behavior: 'smooth' });">Смотреть коллекцию</a>
+        </div>
+    </section>
+
+    <!-- Секция О нас -->
+    <section id="about" class="container" style="text-align: center; max-width: 900px;">
+        <h2 class="section-title">О салоне Crystal Flowers</h2>
+        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+            Мы создаем не просто букеты, а подлинные произведения флористического искусства. Каждая композиция собирается вручную мастерами с многолетним опытом работы на международных конкурсах.
+        </p>
+        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.8;">
+            Используем премиальные цветы премиального качества с голландских и экквадорских плантаций. Гарантируем абсолютную свежесть и безупречный стиль каждого заказа.
+        </p>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-gem"></i>
+                <h3>Премиальное качество</h3>
+                <p>Элитные сортовые цветы с лучших аукционов мира.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Элегантная доставка</h3>
+                <p>Бережная транспортировка в фирменном стиле в назначенное время.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-feather"></i>
+                <h3>Авторский подход</h3>
+                <p>Уникальное оформление каждого букета ведущими флористами.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="container" id="catalog">
+        <h2 class="section-title">Эксклюзивная коллекция</h2>
+
+        <!-- Кнопки выбора тем -->
+        <div class="category-tabs" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 50px;">
+            <button class="btn tab-btn active" onclick="filterCategory('all', this)">Все букеты</button>
+            <button class="btn tab-btn" onclick="filterCategory('cat1', this)">Классика жанра</button>
+            <button class="btn tab-btn" onclick="filterCategory('cat2', this)">Авторские</button>
+            <button class="btn tab-btn" onclick="filterCategory('cat3', this)">Свадебные</button>
+            <button class="btn tab-btn" onclick="filterCategory('cat4', this)">Шоколадные боксы</button>
+            <button class="btn tab-btn" onclick="filterCategory('cat5', this)">Мясные букеты</button>
+        </div>
+
+        <!-- 1. Классика жанра -->
+        <div class="category-section" data-category="cat1">
+            <h3 style="color: var(--gold); font-size: 26px; margin: 40px 0 20px; border-left: 3px solid var(--gold); padding-left: 15px;">Классика жанра</h3>
+            <div class="catalog-grid">
+                <div class="card">
+                    <img src="images/01.webp" alt="Пионовидные розы">
+                    <div class="card-body">
+                        <h3 class="card-title">«Пионовидные розы»</h3>
+                        <p class="card-price">6 800 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/02.webp" alt="Розовый шарм">
+                    <div class="card-body">
+                        <h3 class="card-title">«Розовый шарм»</h3>
+                        <p class="card-price">7 500 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/03.webp" alt="Ангельский букет">
+                    <div class="card-body">
+                        <h3 class="card-title">«Ангельский букет»</h3>
+                        <p class="card-price">8 900 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Авторские композиции -->
+        <div class="category-section" data-category="cat2">
+            <h3 style="color: var(--gold); font-size: 26px; margin: 60px 0 20px; border-left: 3px solid var(--gold); padding-left: 15px;">Авторские композиции</h3>
+            <div class="catalog-grid">
+                <div class="card">
+                    <img src="images/04.webp" alt="Красно-белый акцент">
+                    <div class="card-body">
+                        <h3 class="card-title">«Красно-белый акцент»</h3>
+                        <p class="card-price">10 500 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/05.webp" alt="Black Crystal Mix">
+                    <div class="card-body">
+                        <h3 class="card-title">«Black Crystal Mix»</h3>
+                        <p class="card-price">9 800 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/06.webp" alt="Сердце из роз">
+                    <div class="card-body">
+                        <h3 class="card-title">«Сердце из роз»</h3>
+                        <p class="card-price">18 200 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Свадебная флористика -->
+        <div class="category-section" data-category="cat3">
+            <h3 style="color: var(--gold); font-size: 26px; margin: 60px 0 20px; border-left: 3px solid var(--gold); padding-left: 15px;">Свадебная флористика</h3>
+            <div class="catalog-grid">
+                <div class="card">
+                    <img src="images/07.webp" alt="Розовая планета">
+                    <div class="card-body">
+                        <h3 class="card-title">«Розовая планета»</h3>
+                        <p class="card-price">12 000 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/08.webp" alt="Red Heart Premium">
+                    <div class="card-body">
+                        <h3 class="card-title">«Red Heart Premium»</h3>
+                        <p class="card-price">13 500 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/09.webp" alt="Пионы Light">
+                    <div class="card-body">
+                        <h3 class="card-title">«Пионы Light»</h3>
+                        <p class="card-price">8 000 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Шоколадные боксы -->
+        <div class="category-section" data-category="cat4">
+            <h3 style="color: var(--gold); font-size: 26px; margin: 60px 0 20px; border-left: 3px solid var(--gold); padding-left: 15px;">Шоколадные боксы</h3>
+            <div class="catalog-grid">
+                <div class="card">
+                    <img src="images/10.jpeg" alt="Шоколадный набор">
+                    <div class="card-body">
+                        <h3 class="card-title">«Шоколадный набор»</h3>
+                        <p class="card-price">4 900 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/11.webp" alt="Клубника в шоколаде">
+                    <div class="card-body">
+                        <h3 class="card-title">«Клубничный рай»</h3>
+                        <p class="card-price">5 800 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/12.jpg" alt="Шоколадная симфония">
+                    <div class="card-body">
+                        <h3 class="card-title">«Шоколадная симфония»</h3>
+                        <p class="card-price">6 500 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Мясные букеты -->
+        <div class="category-section" data-category="cat5">
+            <h3 style="color: var(--gold); font-size: 26px; margin: 60px 0 20px; border-left: 3px solid var(--gold); padding-left: 15px;">Мясные букеты</h3>
+            <div class="catalog-grid">
+                <div class="card">
+                    <img src="images/13.webp" alt="Мужской гастробукет">
+                    <div class="card-body">
+                        <h3 class="card-title">«Мужской гастробукет»</h3>
+                        <p class="card-price">13 900 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/14.webp" alt="Деликатесный круг">
+                    <div class="card-body">
+                        <h3 class="card-title">«Деликатесный круг»</h3>
+                        <p class="card-price">10 500 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/15.webp" alt="Крафт Деликатес">
+                    <div class="card-body">
+                        <h3 class="card-title">«Крафт Деликатес»</h3>
+                        <p class="card-price">7 000 ₽</p>
+                        <button class="btn" onclick="document.getElementById('telegram-section').scrollIntoView({ behavior: 'smooth' });">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function filterCategory(category, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.style.background = 'transparent';
+                b.style.color = 'var(--gold)';
+            });
+            btn.style.background = 'var(--gold)';
+            btn.style.color = 'var(--bg-dark)';
+
+            document.querySelectorAll('.category-section').forEach(section => {
+                if (category === 'all' || section.getAttribute('data-category') === category) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Плавный скролл с центрированием по вертикали
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        document.querySelector('.nav-links').classList.remove('active');
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                            const offset = (window.innerHeight - target.offsetHeight) / 2;
+                            window.scrollTo({
+                                top: targetPosition - (offset > 0 ? offset : 50),
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Секция Отзывы -->
+    <section id="reviews" class="container">
+        <h2 class="section-title">Отзывы наших клиентов</h2>
+        <div class="catalog-grid">
+            <div class="card" style="padding: 30px; text-align: left;">
+                <div style="color: var(--gold); margin-bottom: 15px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p style="color: var(--text-muted); font-style: italic; margin-bottom: 20px;">«Заказывала букет на годовщину. Цветы изумительные, свежие, аромат на всю квартиру! Курьер доставил вовремя в красивой коробке.»</p>
+                <h3 class="card-title" style="font-size: 18px; color: var(--gold-light);">— Виктория С.</h3>
+            </div>
+            <div class="card" style="padding: 30px; text-align: left;">
+                <div style="color: var(--gold); margin-bottom: 15px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p style="color: var(--text-muted); font-style: italic; margin-bottom: 20px;">«Очень удобно подтверждать заказ и смотреть живые фото в Telegram-боте перед отправкой. Сервис на высшем уровне!»</p>
+                <h3 class="card-title" style="font-size: 18px; color: var(--gold-light);">— Александр М.</h3>
+            </div>
+            <div class="card" style="padding: 30px; text-align: left;">
+                <div style="color: var(--gold); margin-bottom: 15px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p style="color: var(--text-muted); font-style: italic; margin-bottom: 20px;">«Роскошная флористика, стильное оформление и безупречная вежливость курьеров. Теперь только вы!»</p>
+                <h3 class="card-title" style="font-size: 18px; color: var(--gold-light);">— Елена К.</h3>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="#telegram-section" class="btn" onclick="event.preventDefault(); const target = document.getElementById('telegram-section'); const targetPosition = target.getBoundingClientRect().top + window.pageYOffset; const offset = (window.innerHeight - target.offsetHeight) / 2; window.scrollTo({ top: targetPosition - (offset > 0 ? offset : 50), behavior: 'smooth' });">Добавить отзыв</a>
+        </div>
+    </section>
+
+    <!-- Секция Telegram-бота -->
+    <section id="telegram-section" style="background: #141414; border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding: 90px 20px; text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <i class="fab fa-telegram-plane" style="font-size: 48px; color: var(--gold); margin-bottom: 25px;"></i>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--gold-light); margin-bottom: 20px; font-weight: 400;">Управляйте заказом в Telegram</h2>
+            <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 35px; line-height: 1.8;">
+                Мгновенное оформление и подтверждение заказа, живые фото готового букета перед отправкой, трекинг курьера в реальном времени, а также возможность оставить отзыв — всё это в нашем официальном Telegram-боте.
+            </p>
+            <a href="https://t.me/CrystallFllowerss_bot" target="_blank" class="btn" style="padding: 16px 40px;"><i class="fab fa-telegram" style="margin-right: 10px;"> Открыть Telegram-бот</i></a>
+        </div>
+    </section>
+
+    <!-- Секция Наш менеджер -->
+    <section id="manager-section" style="background: #101010; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding: 80px 20px; text-align: center;">
+        <div style="max-width: 700px; margin: 0 auto;">
+            <i class="fas fa-headset" style="font-size: 42px; color: var(--gold); margin-bottom: 20px;"></i>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold-light); margin-bottom: 15px; font-weight: 400;">Наш персональный менеджер</h2>
+            <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 30px; line-height: 1.7;">
+                Остались вопросы по индивидуальному оформлению, корпоративным заказам или доставке? Напишите нашему менеджеру — мы на связи 24/7.
+            </p>
+            <a href="https://t.me/CrystallFllowerss_bot" target="_blank" class="btn" style="padding: 14px 36px;"><i class="fas fa-comment-dots" style="margin-right: 8px;"> Написать менеджеру</i></a>
+        </div>
+    </section>
+
+    <footer id="contacts" style="background: #080808; padding: 60px 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+        <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold-light); font-weight: 400;">Контакты салона Crystal Flowers</h3>
+            <p style="color: var(--text-muted); font-size: 15px;">
+                <!-- <strong>Instagram:</strong> <a href="#" style="color: var(--gold); text-decoration: none;">@crystal.flowers.luxury</a><br> -->
+                <!-- <strong>Телефон:</strong> +7 (999) 000-00-00<br> -->
+<strong>Email:</strong> <a style="color: var(--gold); text-decoration: none;">info@crystal-flowers.ru</a><br>
+<strong>Часы работы:</strong> Круглосуточно (24/7)<br>
+<strong>Доставка:</strong> от 60 до 90 минут
+            </p>
+            <p style="color: var(--text-muted); font-size: 13px; margin-top: 15px;">
+                <strong>Главный офис:</strong> Москва, ул. Барышиха, д. 14<br>
+                <strong>Компания:</strong> ООО ДОСТАВКА ЦВЕТОВ.РУ | ОГРНИП: 1262900002200 | ИНН: 2901324540 | КПП: 290101001
+            </p>
+            <p style="color: var(--text-muted); font-size: 13px; margin-top: 15px;">&copy; 2026 Crystal Flowers. Доставка премиальных букетов во всех городах России.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
